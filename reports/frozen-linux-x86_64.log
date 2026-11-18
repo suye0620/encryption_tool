@@ -1,0 +1,27 @@
+dscrypt 0.3.0
+test_archive_case_collision_rejected (frozen_e2e.PyrageEndToEndTests.test_archive_case_collision_rejected) ... ok
+test_armored_ciphertext (frozen_e2e.PyrageEndToEndTests.test_armored_ciphertext) ... ok
+test_binary_empty_marker_and_valid_tar_are_always_files (frozen_e2e.PyrageEndToEndTests.test_binary_empty_marker_and_valid_tar_are_always_files) ... ok
+test_decrypt_cannot_overwrite_identity (frozen_e2e.PyrageEndToEndTests.test_decrypt_cannot_overwrite_identity) ... ok
+test_directory_and_default_raw_tar (frozen_e2e.PyrageEndToEndTests.test_directory_and_default_raw_tar) ... ok
+test_existing_directory_is_not_destroyed_even_with_force (frozen_e2e.PyrageEndToEndTests.test_existing_directory_is_not_destroyed_even_with_force) ... ok
+test_fifo_input_is_rejected_without_blocking (frozen_e2e.PyrageEndToEndTests.test_fifo_input_is_rejected_without_blocking) ... ok
+test_invalid_recipient_force_does_not_clobber_output (frozen_e2e.PyrageEndToEndTests.test_invalid_recipient_force_does_not_clobber_output) ... ok
+test_keygen_and_pubkey_without_age (frozen_e2e.PyrageEndToEndTests.test_keygen_and_pubkey_without_age) ... ok
+test_legacy_directory_is_explicit (frozen_e2e.PyrageEndToEndTests.test_legacy_directory_is_explicit) ... ok
+test_malicious_archive_rejected_and_no_target (frozen_e2e.PyrageEndToEndTests.test_malicious_archive_rejected_and_no_target) ... ok
+test_non_utf8_identity_has_clean_error (frozen_e2e.PyrageEndToEndTests.test_non_utf8_identity_has_clean_error) ... ok
+test_overwrite_and_force (frozen_e2e.PyrageEndToEndTests.test_overwrite_and_force) ... ok
+test_reject_same_path_hardlinks_and_directory_output_inside_input (frozen_e2e.PyrageEndToEndTests.test_reject_same_path_hardlinks_and_directory_output_inside_input) ... ok
+test_source_symlink_and_directory_symlink_rejected (frozen_e2e.PyrageEndToEndTests.test_source_symlink_and_directory_symlink_rejected) ... ok
+test_windows_unsafe_archive_and_input_names (frozen_e2e.PyrageEndToEndTests.test_windows_unsafe_archive_and_input_names) ... ok
+test_wrong_key_and_corrupt_preserve_forced_target_and_cleanup (frozen_e2e.PyrageEndToEndTests.test_wrong_key_and_corrupt_preserve_forced_target_and_cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 11.560s
+
+OK
+128 MiB frozen executable round trip: SHA-256 matched
+source_sha256=f6c9582fe561d7eb9603331d67a395fae4b22818a5311aa04d181d7c1e920726
+binary_sha256=3a6791918c59e612519f70c5359cf2fa8693fdaa17955ca7716e619d3b75aac5
+binary_bytes=10787288

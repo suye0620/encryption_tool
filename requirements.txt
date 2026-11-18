@@ -1,0 +1,2 @@
+# Offline runtime dependency. Pin the tested release for reproducible deployment.
+pyrage==1.4.0

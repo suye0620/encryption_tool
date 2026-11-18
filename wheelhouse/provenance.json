@@ -1,0 +1,30 @@
+[
+  {
+    "filename": "pyrage-1.4.0-cp310-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl",
+    "sha256": "bcf4177aea91a9f48951db8001c1385baafbae62cc15d691ef43efebaab6b8db",
+    "size": 1701313,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/13/bb/6b167a449e95ecf0eaf4277c949a89a29dfc08cc533f710a9e6f12bef513/pyrage-1.4.0-cp310-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl",
+    "official_metadata": "https://pypi.org/pypi/pyrage/1.4.0/json"
+  },
+  {
+    "filename": "pyrage-1.4.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+    "sha256": "f868b360ccd3f836326d42b532fae3e8eb8340a88cca0a39c0ae10fce68f6cc5",
+    "size": 882978,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/5a/cb/d88aaab0b89141802473f6139fe8e05519d1b6ac06bff8231a1378a5674f/pyrage-1.4.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+    "official_metadata": "https://pypi.org/pypi/pyrage/1.4.0/json"
+  },
+  {
+    "filename": "pyrage-1.4.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "sha256": "7f4eb0cbc2b4aee5deac9862c47b3895866df5554153951af822e9c581e68558",
+    "size": 924673,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/d9/f0/41da7d88cfdad2eba492f3275ec50a65916ccd3a78140fb15875569ad1ff/pyrage-1.4.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "official_metadata": "https://pypi.org/pypi/pyrage/1.4.0/json"
+  },
+  {
+    "filename": "pyrage-1.4.0-cp310-abi3-win_amd64.whl",
+    "sha256": "c4a5dcd24a14b5e0d4cccff13649a2b8f1609ad45d6438bb85f35d84b0c8155e",
+    "size": 848219,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/d3/8c/354fdb9ee7b45a2060272c623536b2cf9f0996de2242eaac177cff3f8003/pyrage-1.4.0-cp310-abi3-win_amd64.whl",
+    "official_metadata": "https://pypi.org/pypi/pyrage/1.4.0/json"
+  }
+]
