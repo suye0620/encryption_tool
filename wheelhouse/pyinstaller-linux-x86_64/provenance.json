@@ -1,0 +1,47 @@
+[
+  {
+    "name": "pyinstaller",
+    "version": "6.22.3",
+    "filename": "pyinstaller-6.22.3-py3-none-manylinux2014_x86_64.whl",
+    "sha256": "451a4ae14b719365bf1a2f0a99dae7b3463060061c3a394c70d5264cfb439528",
+    "size": 764974,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/7b/b6/dd21d61fc5e25377be24eabf13e99e4e46548a5abe2bf7b15d8b3d9cc74a/pyinstaller-6.22.3-py3-none-manylinux2014_x86_64.whl",
+    "official_metadata": "https://pypi.org/pypi/pyinstaller/6.22.3/json"
+  },
+  {
+    "name": "pyinstaller-hooks-contrib",
+    "version": "2026.10",
+    "filename": "pyinstaller_hooks_contrib-2026.10-py3-none-any.whl",
+    "sha256": "dfc3cde20a7ce6c92e803016e66eed4b7050467e2c5f886a3745d89b258c6d6d",
+    "size": 463652,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/08/10/4a6d13adaa93d0bbcfea082a78965e970cae7a8bfa82ac1557a1dc8f1cba/pyinstaller_hooks_contrib-2026.10-py3-none-any.whl",
+    "official_metadata": "https://pypi.org/pypi/pyinstaller-hooks-contrib/2026.10/json"
+  },
+  {
+    "name": "altgraph",
+    "version": "0.17.5",
+    "filename": "altgraph-0.17.5-py2.py3-none-any.whl",
+    "sha256": "f3a22400bce1b0c701683820ac4f3b159cd301acab067c51c653e06961600597",
+    "size": 21228,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/a9/ba/000a1996d4308bc65120167c21241a3b205464a2e0b58deda26ae8ac21d1/altgraph-0.17.5-py2.py3-none-any.whl",
+    "official_metadata": "https://pypi.org/pypi/altgraph/0.17.5/json"
+  },
+  {
+    "name": "packaging",
+    "version": "26.3",
+    "filename": "packaging-26.3-py3-none-any.whl",
+    "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+    "size": 129956,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl",
+    "official_metadata": "https://pypi.org/pypi/packaging/26.3/json"
+  },
+  {
+    "name": "setuptools",
+    "version": "84.2.1",
+    "filename": "setuptools-84.2.1-py3-none-any.whl",
+    "sha256": "ca140b45d5325a9478f880e351484f62fef15f336462e449ca0c03c873d589c2",
+    "size": 876263,
+    "source": "https://pypi.tuna.tsinghua.edu.cn/packages/ef/55/6dc6d6bb953bdfc52519a0059592c52b6e3b8ad51cf8256dffceb55b0610/setuptools-84.2.1-py3-none-any.whl",
+    "official_metadata": "https://pypi.org/pypi/setuptools/84.2.1/json"
+  }
+]

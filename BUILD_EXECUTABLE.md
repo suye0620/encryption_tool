@@ -27,6 +27,21 @@ uv pip install --python .venv-cp311/bin/python \
 .venv-cp311/bin/python tests/verify_frozen.py dist/linux-x86_64/dscrypt
 ```
 
+## 离线构建环境（Linux x86_64）
+
+从项目根目录执行以下命令。第一步使用 CPython 3.11 创建新虚拟环境并安装 pyrage。第二步用 uv 从本地构建依赖目录安装固定版本，并按清单校验 SHA-256。
+
+```bash
+python3.11 install_offline.py --venv .venv-build
+uv --offline --no-cache --no-config pip install --python .venv-build/bin/python \
+  --no-index --only-binary :all: --require-hashes \
+  --find-links wheelhouse/pyinstaller-linux-x86_64 \
+  -r wheelhouse/pyinstaller-linux-x86_64/requirements.txt
+uv --offline --no-config pip check --python .venv-build/bin/python
+```
+
+随后用 `.venv-build/bin/python` 执行上面的 PyInstaller 和验收命令。离线构建需要预先准备 CPython 3.11、uv 和系统构建工具（例如 `objdump`，通常由 binutils 提供）。其他平台应准备对应的 PyInstaller wheel 和平台专用依赖。
+
 ## 使用
 
 ```bash
