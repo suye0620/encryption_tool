@@ -10,7 +10,6 @@
 这些 wheel 标记为 `cp310-abi3`，可用于 CPython 3.11；不是只能用于 Python 3.10。
 本包不包含 Python 解释器，目标机器须预先安装 CPython 3.11。
 运行只依赖 pyrage，无需 age、age-keygen、Rust、C 编译器或办公文档解析库。
-既有业务环境的 27 项依赖不属于加密工具依赖，因此未打入本包。
 
 ## 安装
 
@@ -51,7 +50,7 @@ uv pip check --python .venv/bin/python
 .venv/bin/python dscrypt.py pubkey --identity identity.txt
 ```
 
-仅将输出的 `age1...` 公钥带入内网。不要将私钥带入内网，不要将私钥和密文放进同一封邮件。
+只在目标机器上使用导出的公钥加密。私钥保留在可信设备上，不要与密文经同一渠道传输。
 Windows 使用 `.venv\Scripts\python.exe` 替换上述解释器路径。
 
 加密单文件，文件内容可以是任意字节：
@@ -83,4 +82,4 @@ Windows 使用 `.venv\Scripts\python.exe` 替换上述解释器路径。
 4. 将密文传到实际 Windows/macOS 设备解密，比较原文件与还原文件 SHA-256。
 5. 用较大文件检查实际内存和磁盘占用；解密目录需要临时磁盘空间。
 
-宿主 Linux x86_64 的验证不能替代 aarch64、Windows 或 macOS 真机验收。随包提供目标 wheel 只证明依赖已备齐，不代表已完成跨平台实机测试。加密保护附件内容，不保证邮件网关允许传输加密附件。
+宿主 Linux x86_64 的验证不能替代 aarch64、Windows 或 macOS 真机验收。随包提供目标 wheel 只证明依赖已备齐，不代表已完成跨平台实机测试。加密保护的是文件内容，不保证传输渠道允许传输加密文件。
