@@ -55,7 +55,7 @@ class PublicationRaceTests(unittest.TestCase):
                     temporary, final = original(path, force, **kwargs)
                     final.write_bytes(b'created by another process')
                     return temporary, final
-                args = SimpleNamespace(output=str(target), input=str(source), recipient=recipient, force=False, armor=False)
+                args = SimpleNamespace(output=str(target), input=str(source), recipient=recipient, force=False, armor=False, age_suffix=False)
                 with patch.object(dscrypt, 'atomic_target', side_effect=competing_create), contextlib.redirect_stdout(io.StringIO()):
                     with self.assertRaises((dscrypt.ToolError, FileExistsError)):
                         getattr(dscrypt, operation)(args)

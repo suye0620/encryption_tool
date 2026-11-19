@@ -23,6 +23,7 @@ except ImportError as exc:  # pragma: no cover - exercised on an unprovisioned h
 VERSION = "0.3.0"
 ARCHIVE_MARKER = b"DSCRYPT-TAR-V1\n"
 CHUNK_SIZE = 1024 * 1024
+AGE_SUFFIX = ".age"
 
 
 class ToolError(Exception):
@@ -52,6 +53,17 @@ def same_path_or_file(source: Path, target: Path) -> bool:
         )
     except OSError:
         return source.resolve() == target.resolve()
+
+
+def with_age_suffix(target: Path) -> Path:
+    """Add ".age" to the output name unless it already ends with one."""
+    name = target.name
+    if name.lower().endswith(AGE_SUFFIX):
+        return target
+    try:
+        return target.with_name(name + AGE_SUFFIX)
+    except ValueError as exc:
+        raise ToolError(f"输出路径无法追加 .age 后缀：{target}") from exc
 
 
 def atomic_target(path: Path, force: bool, *, allow_directory: bool = False) -> tuple[Path, Path]:
@@ -283,6 +295,8 @@ def _decrypt_stream(reader: BinaryIO, writer: BinaryIO, identities) -> None:
 def encrypt(args: argparse.Namespace) -> None:
     require_pyrage()
     source, target = Path(args.input), Path(args.output)
+    if args.age_suffix:
+        target = with_age_suffix(target)
     validate_input(source)
     if same_path_or_file(source, target):
         raise ToolError("输入和输出不能是同一路径或同一文件的硬链接")
@@ -413,6 +427,7 @@ def parser() -> argparse.ArgumentParser:
     command.add_argument("-o", "--output", required=True)
     command.add_argument("-r", "--recipient", required=True)
     command.add_argument("--armor", action="store_true", help="使用 ASCII Armor 输出")
+    command.add_argument("--age-suffix", action="store_true", help="在输出文件名末尾追加 .age（已以 .age 结尾时不重复追加）")
     command.add_argument("--force", action="store_true")
     command.set_defaults(func=encrypt)
     command = commands.add_parser("decrypt", help="解密 age 文件；目录归档需显式指定 --directory")

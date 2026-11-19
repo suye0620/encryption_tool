@@ -62,6 +62,45 @@ class PyrageEndToEndTests(unittest.TestCase):
         self.assertTrue(p.stdout.strip().startswith('age1'))
         self.assertNotIn('AGE-SECRET-KEY-', p.stdout + p.stderr)
 
+    def test_output_suffix_is_opt_in_and_decrypt_ignores_extension(self):
+        src = self.root / '原始 文档.bin'
+        src.write_bytes(b'payload bytes')
+        plain_named = self.root / 'output.dat'
+        self.encrypt(src, plain_named)
+        self.assertTrue(plain_named.is_file())
+        self.assertTrue(plain_named.read_bytes().startswith(b'age-encryption.org/v1\n'))
+        restored = self.root / 'restored.dat'
+        self.decrypt(plain_named, restored)
+        self.assertEqual(restored.read_bytes(), b'payload bytes')
+        self.cli('inspect', '-i', plain_named)
+        self.encrypt(src, self.root / 'named.dat', '--age-suffix')
+        self.assertTrue((self.root / 'named.dat.age').is_file())
+        already = self.root / 'already.age'
+        self.encrypt(src, already, '--age-suffix')
+        self.assertTrue(already.is_file())
+        self.assertFalse((self.root / 'already.age.age').exists())
+        upper = self.root / 'upper.AGE'
+        self.encrypt(src, upper, '--age-suffix')
+        self.assertTrue(upper.is_file())
+        self.assertFalse((self.root / 'upper.AGE.age').exists())
+
+    def test_suffix_applied_before_overwrite_and_same_file_checks(self):
+        src = self.root / 'source'; src.write_bytes(b'secret')
+        base = self.root / 'cipher'; final = self.root / 'cipher.age'
+        final.write_bytes(b'existing')
+        self.encrypt(src, base, '--age-suffix', success=False)
+        self.assertEqual(final.read_bytes(), b'existing')
+        self.assertFalse(base.exists())
+        self.encrypt(src, base, '--age-suffix', '--force')
+        restored = self.root / 'restore'; self.decrypt(final, restored)
+        self.assertEqual(restored.read_bytes(), b'secret')
+        collision = self.root / 'collision.age'; collision.write_bytes(b'keep')
+        self.encrypt(collision, self.root / 'collision', '--age-suffix', '--force', success=False)
+        self.assertEqual(collision.read_bytes(), b'keep')
+        folder = self.root / 'folder'; folder.mkdir()
+        self.encrypt(folder, folder / 'out', '--age-suffix', success=False)
+        self.assertFalse((folder / 'out.age').exists())
+
     def test_binary_empty_marker_and_valid_tar_are_always_files(self):
         samples = [b'', bytes(range(256)), MARKER + b'not gzip', MARKER + self.tar_bytes(), self.tar_bytes()]
         for i, payload in enumerate(samples):

@@ -60,7 +60,7 @@ uv --offline --no-config pip check --python .venv-build/bin/python
 
 可执行文件复制到独立临时目录运行；子进程 PATH 仅包含临时目录，清除了 PYTHONHOME、PYTHONPATH、VIRTUAL_ENV 和 LD_LIBRARY_PATH。测试控制器使用项目 Python 和 pyrage 生成测试数据，但被测子进程直接执行独立 ELF，不调用系统 Python 或外部 age。未在彻底移除 Python 的新操作系统镜像中验证。
 
-- 复用原端到端测试：17 项通过、0 跳过。
+- 复用原端到端测试：18 项通过、0 跳过（含输出后缀可选与扩展名无关解密）。
 - 覆盖密钥生成、公钥导出、普通二进制/空文件/特殊前缀、目录、旧目录、Armor、恶意归档、错误私钥、截断与篡改密文、覆盖保护、链接与特殊文件拒绝、Windows 非法路径和大小写冲突。
 - 独立程序另做 128 MiB 随机文件往返，SHA-256 一致。
 - 测试前后主程序 SHA-256 一致。
@@ -69,13 +69,13 @@ uv --offline --no-config pip check --python .venv-build/bin/python
 
 产物：`dist/linux-x86_64/dscrypt`
 
-大小：10,787,288 字节，约 10.3 MiB。
+大小：10,787,816 字节，约 10.3 MiB。
 
 ```text
 主程序 SHA-256:
-f6c9582fe561d7eb9603331d67a395fae4b22818a5311aa04d181d7c1e920726
+5425f2c9de077bd022e70fc4a301bf8259043e0a0a08c20e26fce3c474cb6055
 可执行文件 SHA-256:
-3a6791918c59e612519f70c5359cf2fa8693fdaa17955ca7716e619d3b75aac5
+18f4608e2c90514b97ee5686aa3827f3688835b39492f648d4b1914799acdcaf
 ```
 
 ## 兼容性和使用边界

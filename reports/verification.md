@@ -2,16 +2,16 @@
 
 ## 结论
 
-在本次 Linux x86_64 / CPython 3.11.15 环境中，冻结源码通过完整回归、官方 age 双向互通、目录并发 no-clobber 检查和 128 MiB 文件往返基准，可以进入打包流程。不能据此宣称“完美”或宣称所有平台已验证。
+在本次 Linux x86_64 / CPython 3.11.15 环境中，新版源码通过完整回归及官方 age 双向互通；Linux 单文件程序也通过独立后缀与加解密检查。结果仅覆盖所列环境和场景，不能据此宣称所有平台已验证。
 
 ## 固定版本与哈希
 
-测试前记录与测试后复核一致：
+本轮独立复验前后核对一致：
 
-- `dscrypt.py`: `f6c9582fe561d7eb9603331d67a395fae4b22818a5311aa04d181d7c1e920726`
-- `pyproject.toml`: `32fb33aedfe5bf97461554045cd56680a5ef364d00b52d5471acbfd132336093`
-- `requirements.txt`: `026ed7e95cdc26e4da7198e170906a234e4983edd90c09c1335d86065a855ce`
-- `README.md`: `50d69870185fb0d7de0e3e9156f5b0b09aea25c1392af82f985a9d8515bbfd0c`
+- `dscrypt.py`: `5425f2c9de077bd022e70fc4a301bf8259043e0a0a08c20e26fce3c474cb6055`
+- Linux x86_64 单文件程序 `dist/linux-x86_64/dscrypt`: `18f4608e2c90514b97ee5686aa3827f3688835b39492f648d4b1914799acdcaf`，大小 10,787,816 字节。
+
+本报告更新时再次核对上述两个 SHA-256，结果一致。
 
 ## 测试环境
 
@@ -32,7 +32,7 @@
 DSCRYPT_TEST_AGE=<同一临时目录>/age .venv-cp311/bin/python -m unittest discover -s tests -v
 ```
 
-结果：**23 项通过，0 项跳过，0 项失败**。
+结果：**25 项通过，0 项跳过，0 项失败**。官方 age 互通测试已实际执行。
 
 覆盖范围包括：
 
@@ -44,8 +44,16 @@ DSCRYPT_TEST_AGE=<同一临时目录>/age .venv-cp311/bin/python -m unittest dis
 - 同路径、硬链接、符号链接、FIFO、输出在源目录内、身份私钥保护。
 - 无 `--force` 原子 no-clobber，以及 `--force` 失败时保留原目标。
 - 目录发布前并发创建目标目录的确定性 `mkdir` 竞态：目标未被覆盖。
+- 默认输出名不追加后缀；`--age-suffix` 按需追加，已有 `.age` 后缀不重复追加。解密及 inspect 不依赖扩展名。
+- 追加后缀后的最终路径仍执行覆盖、同文件和源目录内输出检查。
+
+## Linux 单文件程序
+
+独立复验直接执行上述 Linux x86_64 单文件程序，子进程 PATH 不含 age：默认无后缀及 `--age-suffix` 输出均可 inspect 并逐字节解密，默认拒绝覆盖已有输出。构建方还报告冻结程序端到端 18 项通过和 128 MiB 随机文件往返一致，详见 `BUILD_EXECUTABLE.md`；该冻结程序本轮未独立重跑官方 age 互通或 monkeypatch 竞态测试。
 
 ## 大文件基准
+
+以下为上一冻结源码 `f6c9582fe561d7eb9603331d67a395fae4b22818a5311aa04d181d7c1e920726` 的历史基准，并非本轮新源码的独立基准数据。
 
 命令：
 

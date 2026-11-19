@@ -36,6 +36,8 @@ python3 dscrypt.py encrypt -i report.docx -o report.docx.age -r 'age1...'
 python3 dscrypt.py encrypt -i private_dir -o private_dir.age -r 'age1...'
 ```
 
+输出文件名完全由 `-o` 指定，默认不追加 `.age`；需要时加 `--age-suffix` 自动追加，已以 `.age` 结尾（不分大小写）时不重复追加。解密和 `inspect` 按密文内容识别，不依赖文件扩展名。
+
 目录会分块制作标准 `tar.gz`，暂存于 Python 的 `TemporaryFile` 后交给 pyrage 加密；普通文件加密直接读取输入流。目录归档和解密暂存可能写入磁盘，自动清理不等于安全擦除。请在可信、空间充足的临时存储上运行；Linux/macOS 可通过 `TMPDIR` 指定临时目录。也可使用 `--armor` 输出 ASCII Armor 文本。
 
 解密普通文件必须按默认模式执行，原始字节会直接还原：
